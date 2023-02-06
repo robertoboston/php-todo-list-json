@@ -9,8 +9,15 @@
     //3 controllo se ho inviato un nuovo task 
     if(isset($_POST['todoItem'])){
         $todo_item = $_POST['todoItem'];
+
+        $todo_array = [
+            "language" => $todo_item,
+            "done" => $false,
+        ];
+
         // aggiungo in coda un nuovo elemento all'array
-        array_push($todo_list,$todo_item);
+        $todo_list[] = $todo_array;
+       
 
         // scrivo il dato all'interno del file json
         file_put_contents('todo-list.json', json_encode(($todo_list)));

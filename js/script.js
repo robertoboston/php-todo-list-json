@@ -5,23 +5,22 @@ createApp({
         return {
             apiUrl: 'server.php',
             todoList: [],
+            language: ''
+            
         }
     },
     methods: {
         addTodo(){
-            let obj={
-                language:this.language,
-                done: false
-            }
             const data = {
-                todoItem : obj
-
+                todoItem : this.language
             }
+      
             axios.post(this.apiUrl, data, { 
                 headers: {'Content-Type': 'multipart/form-data'}
             }).then((response) =>{
-                this.language = ''
-                console.log(response.data)
+                this.language = '';
+
+                this.todoList = response.data;
             })
 
         }
