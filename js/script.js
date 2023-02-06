@@ -13,9 +13,16 @@ createApp({
                 language:this.language,
                 done: false
             }
-            axios.post(this.apiUrl, obj, { 
+            const data = {
+                todoItem : obj
+
+            }
+            axios.post(this.apiUrl, data, { 
                 headers: {'Content-Type': 'multipart/form-data'}
-        })
+            }).then((response) =>{
+                this.language = ''
+                console.log(response.data)
+            })
 
         }
     },
